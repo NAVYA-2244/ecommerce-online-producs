@@ -1,0 +1,151 @@
+<html>
+<head>
+    <style>
+        
+ /* body{background-image:url('C:/trainig/html/images/buss.png');
+} */
+
+
+#term input:not(.terms){
+		display: block;
+		content: center;
+	}
+    form{margin: 200 150 0 550;
+    color: aquamarine;
+    background-color: rgb(248, 111, 20);
+    width: 200px;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" 
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+    <form action="C:\trainig\html\javascript\project\complete-t.html" name="f1" id="term" onsubmit="return work()">
+Name:<input type="text" name="name" placeholder="enter your name">
+<h6 id="a"></h6>
+Date of birth:<input type="date" name="birth"placeholder="date of birth">
+<h6 id="b"></h6>
+select seats:<input type="number" name="seats" id="d" placeholder="how mani seats" min="0" max="6" style="width: 150px;" onchange="seat()" >
+<h6 id="bil"></h6>
+Bill:<input id="totalAmt"  type="text">
+account No:<input type="number" name="anumber"placeholder="account NO">
+<h6 id="e"></h6>
+Enter OTP:<input type="numer" name="otp"placeholder="enter otp">
+<h6 id="f"></h6>
+<input class="btn btn-primary"  type="submit" value="submit" /><br>
+<input class="btn btn-danger"  type="reset" value="reset" />
+
+    </form>
+<script>
+
+
+    function work(){
+
+var pn=document.forms["f1"]["name"].value;
+var db=document.forms["f1"]["birth"].value;
+
+var mn=document.forms["f1"]["anumber"].value;
+var eotp=document.forms["f1"]["otp"].value;
+
+
+if(pn==""||pn==null){
+		document.getElementById("a").style.color="white"
+		document.getElementById("a").innerHTML="plese fill your name"
+		return false;
+	}
+
+    else{document.getElementById("a").innerHTML=""}
+
+
+    if(db==""||db==null){
+		document.getElementById("b").style.color="white"
+		document.getElementById("b").innerHTML="plese fill your date of birth"
+		return false;
+	}
+
+    else{document.getElementById("b").innerHTML=""}
+
+
+    if (mn.length<14 || mn.length>16){
+		document.getElementById("e").style.color="white"
+		document.getElementById("e").innerHTML="enter valid digits"
+		return false;
+	}
+    else{document.getElementById("e").innerHTML=""}
+
+
+    if (eotp.length<4 || eotp.length>4){
+
+        document.getElementById("f").style.color="white"
+        document.getElementById("f").innerHTML=" enter valid OTP"
+    return false;
+}
+    else{document.getElementById("f").innerHTML=" "}
+
+    }
+//  if(var ss==1){
+  
+    // console.log(aa*1000)
+    function seat(){
+       
+
+        var ss=document.getElementById('d').value
+        document.getElementById("totalAmt").value=Math.trunc(ss)*1000;
+     if(ss<=0 ){
+         document.getElementById('d').value=0;
+         document.getElementById("totalAmt").value=0
+     
+     }else if(ss>0&&ss<6){
+         document.getElementById("totalAmt").value=Math.trunc(ss)*1000;
+     }
+     else if( ss>=6){
+         document.getElementById('d').value=6;
+         document.getElementById("totalAmt").value=6000;
+     }
+     document.getElementById('d').value==ss
+    }
+    
+     // other type
+    //var ss=document.getElementById('d').value
+//var total = ss*1000;
+//document.getElementById('totalAmt').value=total
+
+        // else{
+        //      document.getElementById('d').value=ss*1000;
+        //     }
+//  }
+
+/* if(ss==1){
+ document.getElementById("d").value=Math.trunc(ss)+1000
+    
+ }*/
+
+/* var mult=ss*cc;
+ var aa=document.getElementById("d")
+ .aa.innerHTML=mult;*/
+
+/*a++
+    if(ss>a; ss*a){
+    
+		document.getElementById("c").style.color="white"
+		document.getElementById("c").innerHTML="plese file your name"
+		return false;
+        
+	}
+
+    else{document.getElementById("c").innerHTML=""}*/
+
+
+
+   
+    
+
+    
+
+
+
+</script>
+</body>
+</html>

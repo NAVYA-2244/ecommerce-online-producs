@@ -1,0 +1,180 @@
+<html>
+<head>
+    <style>
+        body{background-image:url('./images/imgb.png');}
+    </style>
+    <link rel="stylesheet" href="./bus.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div id="bg"><marquee direction="right">
+        <img src="./images/nbus.png" height="300px" width="1000px"/></marquee>
+    </div>
+    <div class="midle">
+<b>from:</b><select class="btn btn-outline-success" id="aa">
+    <option>hyderabad</option>
+    <option>bangalore</option>
+    <option>chennai</option>
+    <option>delhi</option>
+    <option>vizag</option>
+</select>
+<b>to:</b><select class="btn btn-outline-success" id="ab">
+    <option>hyderabad</option>
+    <option>bangalore</option>
+    <option>chennai</option>
+    <option>delhi</option>
+    <option>vizag</option>
+  
+</select>
+
+<button class="btn btn-primary" onclick="work()">get-details</button></div>
+<h4 id="t"></h4>
+
+
+
+
+    <script>
+
+        var bus=[{from:"hyderabad",to:"vizag",travel:"kaveri" ,atime:"10", rtime:"1",ac:"ac" ,fee:"1000",seats:"30"},
+        {from:"hyderabad",to:"bangalore",travel:"kaveri",atime:"11", rtime:"2",ac:"ac", fee:"1200",seats:"31" },
+        {from:"hyderabad",to:"chennai",travel:"kaveri",atime:"12", rtime:"3",ac:"ac" ,fee:"1100",seats:"20"},
+        {from:"hyderabad",to:"delhi",travel:"kaveri",atime:"10", rtime:"1",ac:"ac", fee:"1000",seats:"30"},
+        {from:"bangalore",to:"vizag",travel:"kaveri",atime:"10", rtime:"12",ac:"ac", fee:"1000",seats:"30"},
+        {from:"bangalore",to:"hyderabad",travel:"kaveri",atime:"10", rtime:"1",ac:"ac", fee:"1200",seats:"31"},
+        {from:"bangalore",to:"chennai",travel:"kaveri",atime:"10", rtime:"1",ac:"ac", fee:"1200",seats:"31"},
+        {from:"bangalore",to:"delhi",travel:"kaveri",atime:"9", rtime:"12",ac:"ac", fee:"1000",seats:"30"},
+        {from:"bangalore",to:"vizag",travel:"kaveri",atime:"9", rtime:"12",ac:"ac", fee:"1000",seats:"30"},
+        {from:"chennai",to:"hyderabad",travel:"kaveri",atime:"11", rtime:"2",ac:"ac", fee:"1100",seats:"20"},
+        {from:"chennai",to:"bangalore",travel:"kaveri",atime:"11", rtime:"2",ac:"ac", fee:"1100",seats:"20"},
+        {from:"chennai",to:"delhi",travel:"kaveri",atime:"7", rtime:"11",ac:"ac", fee:"1500",seats:"28"},
+        {from:"chennai",to:"vizag",travel:"kaveri",atime:"7", rtime:"11",ac:"ac", fee:"1500",seats:"28"},
+        {from:"delhi",to:"hyb",travel:"kaveri",atime:"8", rtime:"12",ac:"ac", fee:"1400",seats:"29"},
+        {from:"delhi",to:"bangalore",travel:"kaveri",atime:"6", rtime:"12",ac:"ac", fee:"1600",seats:"34"},
+        {from:"delhi",to:"chennai",travel:"kaveri",atime:"8", rtime:"12",ac:"ac", fee:"1400",seats:"29"},
+        {from:"delhi",to:"vizag",travel:"kaveri",atime:"8", rtime:"12",ac:"ac", fee:"1400",seats:"29"},
+        {from:"vizag",to:"hyb",travel:"kaveri",atime:"6:30", rtime:"10",ac:"ac", fee:"1050",seats:"35"},
+        {from:"vizag",to:"bangalore",travel:"kaveri",atime:"6:30", rtime:"10",ac:"ac", fee:"1050",seats:"35"},
+        {from:"vizag",to:"chennai",travel:"kaveri",atime:"9:30", rtime:"1",ac:"ac" ,fee:"950",seats:"27"},
+        {from:"vizag",to:"delhi",travel:"kaveri",atime:"9:30", rtime:"1",ac:"ac" ,fee:"950",seats:"27"},
+
+
+
+
+        {from:"hyderabad",to:"vizag",travel:"kaveri" ,atime:"9", rtime:"12",ac:"non ac" ,fee:"1000",seats:"40"},
+        {from:"hyderabad",to:"bangalore",travel:"kaveri",atime:"10", rtime:"1",ac:"non ac", fee:"1200",seats:"21" },
+        {from:"hyderabad",to:"chennai",travel:"kaveri",atime:"11", rtime:"2",ac:"non ac" ,fee:"1100",seats:"25"},
+        {from:"hyderabad",to:"delhi",travel:"kaveri",atime:"9", rtime:"12",ac:"non ac", fee:"1000",seats:"30"},
+        {from:"bangalore",to:"vizag",travel:"kaveri",atime:"9", rtime:"12",ac:"non ac", fee:"1000",seats:"30"},
+        {from:"bangalore",to:"hyderabad",travel:"kaveri",atime:"10", rtime:"1",ac:"non ac", fee:"1200",seats:"31"},
+        {from:"bangalore",to:"chennai",travel:"kaveri",atime:"10", rtime:"1",ac:"non ac", fee:"1200",seats:"31"},
+        {from:"bangalore",to:"delhi",travel:"kaveri",atime:"9", rtime:"12",ac:"non ac", fee:"1000",seats:"20"},
+        {from:"bangalore",to:"vizag",travel:"kaveri",atime:"9", rtime:"12",ac:"non ac", fee:"1000",seats:"20"},
+        {from:"chennai",to:"hyb",travel:"kaveri",atime:"11", rtime:"2",ac:"non ac", fee:"1100",seats:"30"},
+        {from:"chennai",to:"bangalore",travel:"kaveri",atime:"11", rtime:"2",ac:"non ac", fee:"1100",seats:"30"},
+        {from:"chennai",to:"delhi",travel:"kaveri",atime:"7", rtime:"11",ac:"non ac", fee:"1500",seats:"38"},
+        {from:"chennai",to:"vizag",travel:"kaveri",atime:"7", rtime:"11",ac:"non ac", fee:"1500",seats:"22"},
+        {from:"delhi",to:"hyb",travel:"kaveri",atime:"8", rtime:"12",ac:"non ac", fee:"1400",seats:"29"},
+        {from:"delhi",to:"bangalore",travel:"kaveri",atime:"6", rtime:"12",ac:"non ac", fee:"1600",seats:"44"},
+        {from:"delhi",to:"chennai",travel:"kaveri",atime:"8", rtime:"12",ac:"non ac", fee:"1400",seats:"29"},
+        {from:"delhi",to:"vizag",travel:"kaveri",atime:"8", rtime:"12",ac:"non ac", fee:"1400",seats:"19"},
+        {from:"vizag",to:"hyderabad",travel:"kaveri",atime:"6:30", rtime:"10",ac:"non ac", fee:"1050",seats:"25"},
+        {from:"vizag",to:"bangalore",travel:"kaveri",atime:"6:30", rtime:"10",ac:"non ac", fee:"1050",seats:"35"},
+        {from:"vizag",to:"chennai",travel:"kaveri",atime:"9:30", rtime:"1",ac:"non ac" ,fee:"950",seats:"21"},
+        {from:"vizag",to:"delhihi",travel:"kaveri",atime:"9:30", rtime:"1",ac:"non ac" ,fee:"950",seats:"27"},
+
+
+
+
+
+        {from:"hyderabad",to:"vizag",travel:"orange" ,atime:"6", rtime:"11",ac:"non ac" ,fee:"1000",seats:"40"},
+        {from:"hyderabad",to:"bangalore",travel:"orange",atime:"10", rtime:"1",ac:"non ac", fee:"1200",seats:"21" },
+        {from:"hyderabad",to:"chennai",travel:"orange",atime:"7", rtime:"11",ac:"non ac" ,fee:"1100",seats:"25"},
+        {from:"hyderabad",to:"delhi",travel:"orange",atime:"5", rtime:"8",ac:"non ac", fee:"1000",seats:"30"},
+        {from:"bangalore",to:"vizag",travel:"orange",atime:"9", rtime:"12",ac:"non ac", fee:"1000",seats:"30"},
+        {from:"bangalore",to:"hyderabad",travel:"orange",atime:"4", rtime:"8",ac:"non ac", fee:"1200",seats:"31"},
+        {from:"bangalore",to:"chennai",travel:"orange",atime:"8", rtime:"12",ac:"non ac", fee:"1200",seats:"31"},
+        {from:"bangalore",to:"delhi",travel:"orange",atime:"12", rtime:"4",ac:"non ac", fee:"1000",seats:"20"},
+        {from:"bangalore",to:"vizag",travel:"orange",atime:"4", rtime:"8",ac:"non ac", fee:"1000",seats:"20"},
+        {from:"chennai",to:"hyb",travel:"orange",atime:"5", rtime:"9",ac:"non ac", fee:"1100",seats:"30"},
+        {from:"chennai",to:"bangalore",travel:"orange",atime:"9", rtime:"1",ac:"non ac", fee:"1100",seats:"30"},
+        {from:"chennai",to:"delhi",travel:"orange",atime:"1", rtime:"5",ac:"non ac", fee:"1500",seats:"38"},
+        {from:"chennai",to:"vizag",travel:"orange",atime:"6", rtime:"10",ac:"non ac", fee:"1500",seats:"22"},
+        {from:"delhi",to:"hyb",travel:"orange",atime:"10", rtime:"2",ac:"non ac", fee:"1400",seats:"29"},
+        {from:"delhi",to:"bangalore",travel:"orange",atime:"2", rtime:"6",ac:"non ac", fee:"1600",seats:"44"},
+        {from:"delhi",to:"chennai",travel:"orange",atime:"7", rtime:"11",ac:"non ac", fee:"1400",seats:"29"},
+        {from:"delhi",to:"vizag",travel:"orange",atime:"11", rtime:"3",ac:"non ac", fee:"1400",seats:"19"},
+        {from:"vizag",to:"hyderabad",travel:"orange",atime:"3", rtime:"7",ac:"non ac", fee:"1050",seats:"25"},
+        {from:"vizag",to:"bangalore",travel:"orange",atime:"8", rtime:"12",ac:"non ac", fee:"1050",seats:"35"},
+        {from:"vizag",to:"chennai",travel:"orange",atime:"9", rtime:"1",ac:"non ac" ,fee:"950",seats:"21"},
+        {from:"vizag",to:"delhihi",travel:"orange",atime:"1", rtime:"5",ac:"non ac" ,fee:"950",seats:"27"},
+
+
+
+
+
+        
+        {from:"hyderabad",to:"vizag",travel:"orange" ,atime:"7", rtime:"12",ac:" ac" ,fee:"1000",seats:"40"},
+        {from:"hyderabad",to:"bangalore",travel:"orange",atime:"11", rtime:"2",ac:" ac", fee:"1200",seats:"21" },
+        {from:"hyderabad",to:"chennai",travel:"orange",atime:"8", rtime:"12",ac:" ac" ,fee:"1100",seats:"25"},
+        {from:"hyderabad",to:"delhi",travel:"orange",atime:"6", rtime:"9",ac:" ac", fee:"1000",seats:"30"},
+        {from:"bangalore",to:"vizag",travel:"orange",atime:"10", rtime:"1",ac:" ac", fee:"1000",seats:"30"},
+        {from:"bangalore",to:"hyderabad",travel:"orange",atime:"5", rtime:"9",ac:" ac", fee:"1200",seats:"31"},
+        {from:"bangalore",to:"chennai",travel:"orange",atime:"9", rtime:"1",ac:" ac", fee:"1200",seats:"31"},
+        {from:"bangalore",to:"delhi",travel:"orange",atime:"1", rtime:"5",ac:" ac", fee:"1000",seats:"20"},
+        {from:"bangalore",to:"vizag",travel:"orange",atime:"5", rtime:"9",ac:" ac", fee:"1000",seats:"20"},
+        {from:"chennai",to:"hyb",travel:"orange",atime:"6", rtime:"10",ac:" ac", fee:"1100",seats:"30"},
+        {from:"chennai",to:"bangalore",travel:"orange",atime:"10", rtime:"2",ac:" ac", fee:"1100",seats:"30"},
+        {from:"chennai",to:"delhi",travel:"orange",atime:"2", rtime:"6",ac:" ac", fee:"1500",seats:"38"},
+        {from:"chennai",to:"vizag",travel:"orange",atime:"7", rtime:"11",ac:" ac", fee:"1500",seats:"22"},
+        {from:"delhi",to:"hyb",travel:"orange",atime:"11", rtime:"3",ac:" ac", fee:"1400",seats:"29"},
+        {from:"delhi",to:"bangalore",travel:"orange",atime:"6", rtime:"3",ac:" ac", fee:"1600",seats:"44"},
+        {from:"delhi",to:"chennai",travel:"orange",atime:"11", rtime:"7",ac:" ac", fee:"1400",seats:"29"},
+        {from:"delhi",to:"vizag",travel:"orange",atime:"3", rtime:"11",ac:" ac", fee:"1400",seats:"19"},
+        {from:"vizag",to:"hyderabad",travel:"orange",atime:"7", rtime:"3",ac:" ac", fee:"1050",seats:"25"},
+        {from:"vizag",to:"bangalore",travel:"orange",atime:"12", rtime:"4",ac:" ac", fee:"1050",seats:"35"},
+        {from:"vizag",to:"chennai",travel:"orange",atime:"1", rtime:"9",ac:" ac" ,fee:"950",seats:"21"},
+        {from:"vizag",to:"delhihi",travel:"orange",atime:"1", rtime:"5",ac:" ac" ,fee:"950",seats:"27"},
+  ]
+
+
+        function work(){
+      
+        
+var fm=document.getElementById("aa").value;
+var t=document.getElementById("ab").value;
+var c=document.getElementById("t")
+src=`<table class="table table-dark" border="2px"><th>sl.no</th><th>from</th><th>to</th><th>travel</th><th>atime</th><th>rtime</th><th>ac</th><th>fee</th><th>seats</th>`
+        var st=" ";
+        st=src+st;
+        var b=0;
+for(var a=0; a<bus.length; a++){
+  
+    if(bus[a].from==fm && bus[a].to==t){
+        b++
+       
+           st=st+`<tr><td>${b}</td><td>${bus[a].from}</td><td>${bus[a].to}</td><td>${bus[a].travel}</td><td>${bus[a].atime}</td><td>${bus[a].rtime}</td><td>${bus[a].ac}</td><td>${bus[a].fee}</td><td >${bus[a].seats}</td><td><a href="./seat-new.html" class="modal-body"><button class="btn btn-outline-success"> book </button></a></td><br>`
+             
+    }
+    
+
+
+}
+var str=st+"</table>"
+c.innerHTML=str;
+
+}
+
+
+
+
+</script>
+
+
+<div id="bgi"></div>
+
+
+
+
+</body>
+</html>
